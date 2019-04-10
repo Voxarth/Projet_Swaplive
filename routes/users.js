@@ -15,4 +15,13 @@ router.post('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+
+// POUR SUPPRIMER UN UTILISATEUR
+router.delete('/:id', function(req, res, next) {
+// Récupérer req.params.id
+// L'utiliser pour supprimé en BDD
+// Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
+  res.send('Votre compte à été supprimer');
+});
+
 module.exports = router;
