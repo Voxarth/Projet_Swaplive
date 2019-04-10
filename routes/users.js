@@ -16,6 +16,15 @@ router.post('/', function(req, res, next) {
 });
 
 
+// POUR MODIFIER UN UTILISATEUR
+router.put('/:id', function(req, res, next) {
+  // Récupérer req.params.id
+  // L'utiliser pour supprimé en BDD
+  // Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
+    res.send('Votre compte à été modifier');
+  });
+
+
 // POUR SUPPRIMER UN UTILISATEUR
 router.delete('/:id', function(req, res, next) {
 // Récupérer req.params.id
