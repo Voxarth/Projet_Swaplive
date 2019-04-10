@@ -7,12 +7,25 @@ var router = express.Router();
   });
 
 /* POST new user*/
-
+/**
+ **@author romain
+ */
 router.post('/', function(req, res, next) {
+  //console.log(req.body);
+  
   //verifier les données en post
+  if (!req.body.name){
+    return res.send('merci de renseigner votre nom');
+  }
+  if (!req.body.lastName){
+    return res.send('merci de renseigner votre prénom');
+  }
+  if  (!req.body.email){
+      return res.send('merci de renseigner votre email');
   //inserer les données dans la BDD
   //répondre au client avec l'id du compte
-  res.send('respond with a resource');
+  }
+  res.send('ok  compte enregistrer');
 });
 
 

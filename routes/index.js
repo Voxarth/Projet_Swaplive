@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET accueil */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+});
+/* GET  identification compte. */
+router.post('/login', function(req, res, next) {
+  res.render('login');
 });
 
 /* GET  CGU. */
