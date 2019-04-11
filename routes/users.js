@@ -28,20 +28,29 @@ router.post('/', function(req, res, next) {
   res.send('ok  compte enregistrer');
 });
 
+/**
 
+@author G_G (Jérém)
+
+**/
 // POUR MODIFIER UN UTILISATEUR
 router.put('/:id', function(req, res, next) {
   // Récupérer req.params.id
-  // L'utiliser pour supprimé en BDD
-  // Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
+// L'utiliser pour modifier en BDD le compte
+// Puis dire à dire à l'utilisateur qu'il à bien modifier son compte
     res.send('Votre compte à été modifier');
   });
 
 
+/**
+
+@author G_G (Jérém)
+
+**/
 // POUR SUPPRIMER UN UTILISATEUR
 router.delete('/:id', function(req, res, next) {
 // Récupérer req.params.id
-// L'utiliser pour supprimé en BDD
+// L'utiliser pour supprimé en BDD le compte
 // Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
   res.send('Votre compte à été supprimer');
 });

@@ -11,8 +11,8 @@ router.post('/', function(req, res, next){
 
 /**@author Morgann */
 router.get('/:id', function(req, res, next){
-    //Voir les paramètres d'une discution
-    res.send('Voici les paramètres de la discution');
+    //Afficher une conversation de la BDD
+    res.send('Voici la conversation');
 })
 
 /**@author Morgann */
