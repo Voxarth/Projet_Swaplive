@@ -6,8 +6,8 @@ var router = express.Router();
     res.send('respond with a resource');
   });
 
-/* POST new user*/
-/**
+
+/**Création d'un nouveau compte
  **@author romain
  */
 router.post('/', function(req, res, next) {

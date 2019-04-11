@@ -21,11 +21,18 @@ router.delete('/:id', function(req, res, next) {
       res.send('Votre discution à bien été supprimer');
     });
 
+/** /
+* @author  Rachida
+Ajout d'une discussion
+**/
 router.post('/:id', function(req, res, next) {
     res.send('vous avez été ajouté');
 });
 
-
+/** /
+* @author  Rachida
+Supprimer un utilisateur d'une discussion
+**/
 router.put('/:id', function(req, res, next) {
     res.send('vous avez été banni de la discution');
 
@@ -33,4 +40,4 @@ router.put('/:id', function(req, res, next) {
         res.write('');
 });
     
-module.exports = app;
+module.exports = router;
