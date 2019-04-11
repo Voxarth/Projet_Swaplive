@@ -13,7 +13,6 @@ var MongoClient=require('mongodb').MongoClient,
         if(err) throw err;
         var DB = client.db('swaplive');
         console.log('Je suis connecté.');
-    
 
 
   /* GET users listing. */
@@ -66,7 +65,6 @@ var MongoClient=require('mongodb').MongoClient,
       res.send('Votre compte à été modifier');
     });
 
-
   /**
 
   @author G_G (Jérém)
@@ -80,5 +78,6 @@ var MongoClient=require('mongodb').MongoClient,
     res.send('Votre compte à été supprimer');
   });
 });
+
 
 module.exports = router;
