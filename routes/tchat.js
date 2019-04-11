@@ -1,5 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var MongoClient=require('mongodb').MongoClient,
+  ObjectId =require('mongodb').ObjectId,
+ url= "mongodb://localhost:27017/swaplive";
+
+ MongoClient.connect(url,
+    {useNewUrlParser:true},
+    function(err,client){
+        if(err) throw err;
+        var DB = client.db('swaplive');
 
 /** /
  * @author Morgann 
@@ -58,6 +67,8 @@ router.put('/:id', function(req, res, next) {
 
     if(!req.body.tchat)
         res.write('');
-});
+      });
+    });
+
     
 module.exports = router;
