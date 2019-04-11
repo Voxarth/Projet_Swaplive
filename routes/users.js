@@ -13,9 +13,7 @@ var MongoClient=require('mongodb').MongoClient,
         if(err) throw err;
         var DB = client.db('swaplive');
         console.log('Je suis connecté.');
-
-       
-        
+    
         });
 
 
@@ -40,14 +38,20 @@ router.post('/', function(req, res, next) {
   }
   if  (!req.body.email){
       return res.send('merci de renseigner votre email');
-  //inserer les données dans la BDD
-  //répondre au client avec l'id du compte
   }
-  res.send('ok  compte enregistrer');
+
+   //inserer les données dans la BDD
+   BD.collection('users').insertOne(req.body), function(err, result){
+    if(err) throw err; 
+    console.log(result) ;
+    res.json ({
+      result : 'ok',
+      id : reslut.insertedId.toString()
+    });
+  }
 });
 
 /**
-
 @author G_G (Jérém)
 
 **/
