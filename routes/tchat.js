@@ -55,9 +55,32 @@ router.get('/:id', function(req, res, next){
 Ajout d'une discussion
 **/
 router.post('/:id', function(req, res, next) {
-    res.send('Vous avez été ajouter');
-});
+    
+console.log(req.body)
+console.log(req.params.id)
 
+ var body = req.body ;
+ body.idtchat = req.params.id;
+ body.createdDate = new Date();
+
+var requiredProps = [ 'msg','user' ]
+for(var i in requiredProps){
+  if(typeof body[requiredProps[i]] == 'undefined'){
+    console.log(requiredProps[i]+'empty');
+    return res.send(requiredProps[i]+'empty');
+  }
+}
+ //ajouter la base de donnee
+DB.collection('msg').insertOne(body, function(err, result){
+    //reponse au client
+  if(err) throw err;
+  console.log(result);
+  res.json({
+    result : 'OK',
+    id : result.insertedId.toString()
+  });
+  })
+})
 /** /
 * @author  Rachida
 Supprimer un utilisateur d'une discussion
