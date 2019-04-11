@@ -1,5 +1,23 @@
 var express = require('express');
 var router = express.Router();
+/**
+ * @author Voxarth
+ * ajout de MongoDB
+ */
+var MongoClient=require('mongodb').MongoClient,
+ url= "mongodb://localhost:27017/swaplive";
+
+ MongoClient.connect(url,
+    {useNewUrlParser:true},
+    function(err,client){
+        if(err) throw err;
+        var DB = client.db('swaplive');
+        console.log('Je suis connecté.');
+
+       
+        
+        });
+
 
   /* GET users listing. */
   router.get('/', function(req, res, next) {
