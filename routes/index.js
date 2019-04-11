@@ -10,13 +10,23 @@ var MongoClient=require('mongodb').MongoClient,
         if(err) throw err;
         var DB = client.db('swaplive');
 
-/* GET accueil */
+/* page accueil */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'SAWPLIVE' });
 });
-/* GET  identification compte. */
+
+/* identification au compte. */
 router.post('/login', function(req, res, next) {
   res.render('login');
+  //inserer les données dans la BDD
+  DB.collection('users').findOne(req.body), function(err, result){
+    if(err) throw err; 
+    console.log(result) ;
+    res.json ({
+      result : 'ok',
+      id : result.insertedId.toString()
+    });
+  }
 });
 
 /* GET  CGU. */
