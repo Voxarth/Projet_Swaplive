@@ -66,11 +66,10 @@ module.exports = router;
 /**
 @author Morgann 
 **/
-router.get('/:id', function(req, res, next){
+router.get('/settings/:id', function(req, res, next){
     //Afficher les paramètres de la conversation
     res.send('Voici les paramètres de la conversation');
 })
-
 
 
 /** 
