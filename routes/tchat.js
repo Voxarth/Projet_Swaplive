@@ -14,28 +14,31 @@ var MongoClient=require('mongodb').MongoClient,
  * @author Morgann 
  **/
 router.post('/', function(req, res, next){
-    //Ajout d'une discution
-    //Ajout dans la BDD
-    //Puis dire à l'utilisateur qu'il a créé la discution
-    res.send("Votre discution viens d'être créer");
-
-    var body = req.body ;
-    body.name = req.params.id;
-    body.avatar = req.params.id;
-    body.idUser = req.params.id;
-   
-   var requiredProps = [ 'name','avatar','idUser' ]
-   for(var i in requiredProps){
-        if(typeof body[requiredProps[i]] == 'undefined'){
-            console.log(requiredProps[i]+'empty');
-            return res.send(requiredProps[i]+'empty');
-        }
+    //verification des données
+    if(!req.body.users){
+      return res.send('list of users ?') ;
+    }
+    // creation de l'objet à enregistrer
+    var tchatAcreer = {
+      users : req.body.users
+    } ;
+    // completer les données
+    if(req.body.name) {
+      tchatAcreer.name = req.body.name ;
+    } else {
+      tchatAcreer.name = "new tchat" ;
+    }
+    if(req.body.avatar) {
+      tchatAcreer.avatar = req.body.avatar ;
+    } else {
+      tchatAcreer.avatar = "avatar.jpeg" ;
     }
     //ajouter la base de donnee
-    DB.collection('tchat').insertOne(body, function(err, result){
+    DB.collection('tchat').insertOne(tchatAcreer, function(err, result){
         //reponse au client
         if(err) throw err;
-        console.log(result);
+        //console.log(result);
+        // repondre au client avec idTchat
         res.json({
             result : 'OK',
             id : result.insertedId.toString()
