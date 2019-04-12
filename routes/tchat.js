@@ -120,13 +120,18 @@ router.get('/:id', function(req, res, next){
     //Afficher une conversation de la BDD
     res.send('Voici la conversation');
 
-    // POUR LA CONNEXION A LA BDD
-    var requiredProps = ['tchat'];
-    for(var i in requiredProps) {
-        if(typeof req.body[requiredProps[i]] == 'undefined'){
-            console.log(requiredProps[i] + 'empty');
-            return res.send(requiredProps[i] + 'empty');
-        }
+    var body = req.body ;
+    body.idTchat = req.params.id;
+    body.name = req.params.id;
+    body.avatar = req.params.id;
+    body.idUser = req.params.id;
+
+// POUR LA CONNEXION A LA BDD
+var requiredProps = ['name','idTchat','avatar','idUser'];
+for(var i in requiredProps) {
+    if(typeof req.body[requiredProps[i]] == 'undefined'){
+        console.log(requiredProps[i] + 'empty');
+        return res.send(requiredProps[i] + 'empty');
     }
 
     DB.collection('tchat').insertOne(req.body, function(err, result){
@@ -155,7 +160,7 @@ console.log(req.params.id)
  body.idtchat = req.params.id;
  body.createdDate = new Date();
 
-var requiredProps = [ 'msg','user' ]
+var requiredProps = [ 'msg','idUser' ]
 for(var i in requiredProps){
   if(typeof body[requiredProps[i]] == 'undefined'){
     console.log(requiredProps[i]+'empty');
@@ -182,7 +187,7 @@ router.put('/:id', function(req, res, next) {
 
     if(!req.body.tchat)
         res.write('');
-      });
+    });
     });
 
     
