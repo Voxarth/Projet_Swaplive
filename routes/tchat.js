@@ -118,6 +118,22 @@ router.get('/:id', function(req, res, next){
 
 })
 
+router.delete('/:iduser', function(req, res, next) {
+  //res.send('Vous avez été banni de la discution');
+  
+  var idUser = req.params.iduser;
+  DB.collection('user').deleteOne( 
+    {_id:ObjectId(iduser)},
+    
+    function(err, result){
+      //reponse au client
+      if(err) throw err;
+      res.json({
+        result : 'OK',
+        msg : 'utilisateur supprimer'
+      });
+  })
+})
 
   /** /
   * @author  Rachida
