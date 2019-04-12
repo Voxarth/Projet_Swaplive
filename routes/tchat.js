@@ -65,7 +65,7 @@ router.get('/settings/:id', function(req, res, next){
         }
     }
     //ajouter la base de donnee
-    DB.collection('tchat').insertOne(body, function(err, result){
+    DB.collection('tchat').findOne(body, function(err, result){
         //reponse au client
         if(err) throw err;
         console.log(result);
@@ -86,29 +86,29 @@ router.delete('/:id', function(req, res, next) {
     // Puis dire à l'utilisateur qu'il a bien supprimé la discution
     res.send('Votre discution à bien été supprimer');
 
-//     var body = req.body ;
-//     body.idTchat = req.params.id;
-//     body.name = req.params.id;
-//     body.avatar = req.params.id;
-//     body.idUser = req.params.id;
+    var body = req.body ;
+    body.idTchat = req.params.id;
+    body.name = req.params.id;
+    body.avatar = req.params.id;
+    body.idUser = req.params.id;
    
-//    var requiredProps = [ 'idTchat','name','avatar','idUser' ]
-//    for(var i in requiredProps){
-//         if(typeof body[requiredProps[i]] == 'undefined'){
-//             console.log(requiredProps[i]+'empty');
-//             return res.send(requiredProps[i]+'empty');
-//         }
-//     }
-//     //ajouter la base de donnee
-//     DB.collection('tchat').insertOne(body, function(err, result){
-//         //reponse au client
-//         if(err) throw err;
-//         console.log(result);
-//         res.json({
-//             result : 'OK',
-//             id : result.insertedId.toString()
-//         });
-//     })
+   var requiredProps = [ 'idTchat','name','avatar','idUser' ]
+   for(var i in requiredProps){
+        if(typeof body[requiredProps[i]] == 'undefined'){
+            console.log(requiredProps[i]+'empty');
+            return res.send(requiredProps[i]+'empty');
+        }
+    }
+    //ajouter la base de donnee
+    DB.collection('tchat').deleteOne(body, function(err, result){
+        //reponse au client
+        if(err) throw err;
+        console.log(result);
+        res.json({
+            result : 'OK',
+            id : result.insertedId.toString()
+        });
+    })
 })
 
 /** 
@@ -160,7 +160,7 @@ console.log(req.params.id)
  body.idtchat = req.params.id;
  body.createdDate = new Date();
 
-var requiredProps = [ 'msg','idUser' ]
+var requiredProps = [ 'msg','user' ]
 for(var i in requiredProps){
   if(typeof body[requiredProps[i]] == 'undefined'){
     console.log(requiredProps[i]+'empty');
