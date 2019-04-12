@@ -18,6 +18,29 @@ router.post('/', function(req, res, next){
     //Ajout dans la BDD
     //Puis dire à l'utilisateur qu'il a créé la discution
     res.send("Votre discution viens d'être créer");
+
+    var body = req.body ;
+    body.name = req.params.id;
+    body.avatar = req.params.id;
+    body.idUser = req.params.id;
+   
+   var requiredProps = [ 'name','avatar','idUser' ]
+   for(var i in requiredProps){
+        if(typeof body[requiredProps[i]] == 'undefined'){
+            console.log(requiredProps[i]+'empty');
+            return res.send(requiredProps[i]+'empty');
+        }
+   }
+    //ajouter la base de donnee
+    DB.collection('tchat').insertOne(body, function(err, result){
+        //reponse au client
+        if(err) throw err;
+        console.log(result);
+        res.json({
+            result : 'OK',
+            id : result.insertedId.toString()
+        });
+    })
 })
 
 /** /
