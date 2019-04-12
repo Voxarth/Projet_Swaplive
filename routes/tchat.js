@@ -70,10 +70,10 @@ router.get('/settings/:id', function(req, res, next){
     } 
     //ajouter la base de donnee
     DB.collection('tchat').findOne(tchat, function(err, result){
-        'idTchat' = 'idTchat';
-        'idUser' = 'idUser';
-        'name' = 'name';
-        'avatar' = 'avatar';
+        // 'idTchat' = 'idTchat';
+        // 'idUser' = 'idUser';
+        // 'name' = 'name';
+        // 'avatar' = 'avatar';
         if(err) throw err;
         res.json({
             result : 'OK',
