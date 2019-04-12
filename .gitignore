@@ -60,3 +60,7 @@ yarn.lock
 # next.js build output
 .next
 
+#Others
+
+package-lock.json
+
