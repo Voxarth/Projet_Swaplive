@@ -120,75 +120,56 @@ router.get('/:id', function(req, res, next){
     //Afficher une conversation de la BDD
     res.send('Voici la conversation');
 
-    var body = req.body ;
-    body.idTchat = req.params.id;
-    body.name = req.params.id;
-    body.avatar = req.params.id;
-    body.idUser = req.params.id;
+})
 
-// POUR LA CONNEXION A LA BDD
-var requiredProps = ['name','idTchat','avatar','idUser']
-for(var i in requiredProps) {
-    if(typeof req.body[requiredProps[i]] == 'undefined'){
-        console.log(requiredProps[i] + 'empty');
-        return res.send(requiredProps[i] + 'empty');
+
+  /** /
+  * @author  Rachida
+  Ajout d'une discussion
+  **/ 
+  router.post('/:idTchat', function(req, res, next) {
+    var idTchat = req.params.id ;
+    var messageAenregistrer = req.body ;
+    messageAenregistrer.idTchat = idTchat ;
+    messageAenregistrer.createdDate = new Date() ;
+    if(!messageAenregistrer[msg]) {
+      return res.send('pas de message') ;
     }
-}
-    DB.collection('tchat').insertOne(req.body, function(err, result){
+    if(!messageAenregistrer[user]) {
+      return res.send('qui envoi le message ?') ;
+    }
+
+    //ajouter la base de donnee
+    DB.collection('msg').insertOne(messageAenregistrer, function(err, result){
+        //reponse au client
+      if(err) throw err;
+      res.json({
+        result : 'OK',
+        id : result.insertedId.toString()
+      });
+    })
+  })
+  /** /
+  * @author  Rachida
+  Supprimer un utilisateur d'une discussion
+  DELETE /tchat/idDiscussion/idUser
+  **/
+  router.delete('/:idTchat/:iduser', function(req, res, next) {
+    //res.send('Vous avez été banni de la discution');
+    var idTchat = req.params.idTchat;
+    var idUser = req.params.iduser;
+    DB.collection('tchat').updateOne( 
+      {_id:ObjectId(idTchat)},
+      { $pull : {users : idUser} },
+      function(err, result){
+        //reponse au client
         if(err) throw err;
-        console.log(result);
         res.json({
-            result : 'ok',
-            id : result.insertedId.toString()
+          result : 'OK',
+          msg : 'utilisateur banni'
         });
     })
-})
-
-
-
-/** /
-* @author  Rachida
-Ajout d'une discussion
-**/ 
-
-router.post('/:id', function(req, res, next) {
-    
-console.log(req.body)
-console.log(req.params.id)
-
- var body = req.body ;
- body.idtchat = req.params.id;
- body.createdDate = new Date();
-
-var requiredProps = [ 'msg','user' ]
-for(var i in requiredProps){
-  if(typeof body[requiredProps[i]] == 'undefined'){
-    console.log(requiredProps[i]+'empty');
-    return res.send(requiredProps[i]+'empty');
-  }
-}
- //ajouter la base de donnee
-DB.collection('msg').insertOne(body, function(err, result){
-    //reponse au client
-  if(err) throw err;
-  console.log(result);
-  res.json({
-    result : 'OK',
-    id : result.insertedId.toString()
-  });
   })
-})
-/** /
-* @author  Rachida
-Supprimer un utilisateur d'une discussion
-**/
-router.put('/:id', function(req, res, next) {
-    res.send('Vous avez été banni de la discution');
+});
 
-    if(!req.body.tchat)
-        res.write('');
-    });
-    });
-
-    
 module.exports = router;
