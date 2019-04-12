@@ -109,7 +109,7 @@ router.delete('/:id', function(req, res, next) {
 //             id : result.insertedId.toString()
 //         });
 //     })
-});
+})
 
 /** 
 
@@ -127,13 +127,13 @@ router.get('/:id', function(req, res, next){
     body.idUser = req.params.id;
 
 // POUR LA CONNEXION A LA BDD
-var requiredProps = ['name','idTchat','avatar','idUser'];
+var requiredProps = ['name','idTchat','avatar','idUser']
 for(var i in requiredProps) {
     if(typeof req.body[requiredProps[i]] == 'undefined'){
         console.log(requiredProps[i] + 'empty');
         return res.send(requiredProps[i] + 'empty');
     }
-
+}
     DB.collection('tchat').insertOne(req.body, function(err, result){
         if(err) throw err;
         console.log(result);
