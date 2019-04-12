@@ -1,43 +1,39 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
-  <label for="nom"> Nom: </label>
-<h2>Formulaire</h2>
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<fieldset>
+  <legend>Création du compte utilisateur</legend>
+  <form id="createAccount" method="post" action="/users/">
+    <img src="/images/avatar.jpeg"> <br>
+    nom:<br>
+    <input type="text" name="lastName" value="" placeholder="votre Nom" required> <br>
+    prénom:<br>
+    <input type="text" name="name" value="" required> <br>
+    Email:<br>
+    <input type="email" name="email" value="" required> <br>
+    password:<br>
+    <input type="password" name="password" value="" required> <br>
 
-<form>
-
-    <fieldset>
-        <legend>information personnel:</legend>
-<img src="avatar.jpeg">
-    
-        <br>
-  nom:<br>
-  
-  <input type="text" name="nom" value="">
-  <br>
-  prénom:<br>
-  <input type="text" name="prénom" value="">
-  <br><br>
-  Email:<br>
-  <input type="text" age="" value="">
-  <br>
-  password:<br>
-  <input type="password" name="mot de passe" value="">
-
+    <input type="submit" value="Valider">
+  </form>
 </fieldset>
-</form>
- 
-<button>valider</button>
+    <script>
+        $('#createAccount').on('submit', function(evt){
+          evt.stopPropagation();
+          evt.preventDefault() ;
+          var data = {} ;
+          $(this).serializeArray().map(function(x){data[x.name] = x.value;});
+          console.log(data) ;
 
-<div>
-
-    
-
-
-  
-
-
-
+          $.ajax({
+            url : $(this).attr('action'),
+            method : $(this).attr('method'),
+            data : data
+          }).done(function(res){
+            console.log(res) ;
+          })
+        })
+    </script>
 {% endblock %}
