@@ -3,7 +3,7 @@
 {% block body %}
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-<fieldset>
+<fieldset id="login" class="page">
   <legend>Création du compte utilisateur</legend>
   <form id="createAccount" method="post" action="/users/">
     <img src="/images/avatar.jpeg"> <br>
@@ -19,21 +19,7 @@
     <input type="submit" value="Valider">
   </form>
 </fieldset>
-    <script>
-        $('#createAccount').on('submit', function(evt){
-          evt.stopPropagation();
-          evt.preventDefault() ;
-          var data = {} ;
-          $(this).serializeArray().map(function(x){data[x.name] = x.value;});
-          console.log(data) ;
 
-          $.ajax({
-            url : $(this).attr('action'),
-            method : $(this).attr('method'),
-            data : data
-          }).done(function(res){
-            console.log(res) ;
-          })
-        })
-    </script>
+    <div id="conversations" class="page"></div>
+    <script src="/javascript/app.js"></script>
 {% endblock %}
