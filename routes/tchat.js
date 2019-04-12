@@ -53,7 +53,8 @@ router.get('/:id', function(req, res, next){
 /** /
 * @author  Rachida
 Ajout d'une discussion
-**/
+**/ 
+
 router.post('/:id', function(req, res, next) {
     
 console.log(req.body)
