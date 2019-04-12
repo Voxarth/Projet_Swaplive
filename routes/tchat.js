@@ -9,6 +9,7 @@ var MongoClient=require('mongodb').MongoClient,
     function(err,client){
         if(err) throw err;
         var DB = client.db('swaplive');
+    })
 
 /** /
  * @author Morgann 
@@ -53,29 +54,31 @@ router.post('/', function(req, res, next){
 router.get('/settings/:id', function(req, res, next){
     //Afficher les paramètres de la conversation
     res.send('Voici les paramètres de la  conversation');
-
-    var body = req.body ;
-    body.idTchat = req.params.id;
-    body.name = req.params.id;
-    body.avatar = req.params.id;
-    body.idUser = req.params.id;
-   
-   var requiredProps = [ 'idTchat','name','avatar','idUser' ]
-   for(var i in requiredProps){
-        if(typeof body[requiredProps[i]] == 'undefined'){
-            console.log(requiredProps[i]+'empty');
-            return res.send(requiredProps[i]+'empty');
-        }
+    var tchatParams = {
+        idTchat : req.params.idTchat,
+        idUser : req.params.idUser,
+    };
+    if(req.body.name) {
+        tchatParams.name = req.body.name ;
+    } else {
+        tchatParams.name = "new tchat" ;
     }
+    if(req.body.avatar) {
+        tchatParams.avatar = req.body.avatar ;
+    } else {
+        tchatParams.avatar = "avatar.jpeg" ;
+    } 
     //ajouter la base de donnee
-    DB.collection('tchat').findOne(body, function(err, result){
-        //reponse au client
+    DB.collection('tchat').findOne(tchat, function(err, result){
+        'idTchat' = 'idTchat';
+        'idUser' = 'idUser';
+        'name' = 'name';
+        'avatar' = 'avatar';
         if(err) throw err;
-        console.log(result);
         res.json({
             result : 'OK',
-            id : result.insertedId.toString()
-        });
+            id : result.insertId.toString()
+        })
     })
 })
 
@@ -89,30 +92,20 @@ router.delete('/:id', function(req, res, next) {
     // Puis dire à l'utilisateur qu'il a bien supprimé la discution
     res.send('Votre discution à bien été supprimer');
 
-    var body = req.body ;
-    body.idTchat = req.params.id;
-    body.name = req.params.id;
-    body.avatar = req.params.id;
-    body.idUser = req.params.id;
-   
-   var requiredProps = [ 'idTchat','name','avatar','idUser' ]
-   for(var i in requiredProps){
-        if(typeof body[requiredProps[i]] == 'undefined'){
-            console.log(requiredProps[i]+'empty');
-            return res.send(requiredProps[i]+'empty');
-        }
-    }
-    //ajouter la base de donnee
-    DB.collection('tchat').deleteOne(body, function(err, result){
+    var idTchat = req.params.idTchat;
+    DB.collection('tchat').updateOne( 
+      {_id:ObjectId(idTchat)},
+      { $pull : {tchat : idTchat} },
+      function(err, result){
         //reponse au client
         if(err) throw err;
-        console.log(result);
         res.json({
-            result : 'OK',
-            id : result.insertedId.toString()
+          result : 'OK',
+          msg : 'discution supprimer'
         });
     })
 })
+
 
 /** 
 
@@ -132,18 +125,18 @@ router.get('/:id', function(req, res, next){
   **/ 
   router.post('/:idTchat', function(req, res, next) {
     var idTchat = req.params.id ;
-    var messageAenregistrer = req.body ;
-    messageAenregistrer.idTchat = idTchat ;
-    messageAenregistrer.createdDate = new Date() ;
-    if(!messageAenregistrer[msg]) {
+    var newTchat = req.body ;
+    newTchat.idTchat = idTchat ;
+    newTchat.createdDate = new Date() ;
+    if(!newTchat[msg]) {
       return res.send('pas de message') ;
     }
-    if(!messageAenregistrer[user]) {
+    if(!newTchat[user]) {
       return res.send('qui envoi le message ?') ;
     }
 
     //ajouter la base de donnee
-    DB.collection('msg').insertOne(messageAenregistrer, function(err, result){
+    DB.collection('msg').insertOne(newTchat, function(err, result){
         //reponse au client
       if(err) throw err;
       res.json({
@@ -172,7 +165,6 @@ router.get('/:id', function(req, res, next){
           msg : 'utilisateur banni'
         });
     })
-  })
-});
+})
 
 module.exports = router;
