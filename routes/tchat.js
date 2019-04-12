@@ -18,6 +18,29 @@ router.post('/', function(req, res, next){
     //Ajout dans la BDD
     //Puis dire à l'utilisateur qu'il a créé la discution
     res.send("Votre discution viens d'être créer");
+
+    var body = req.body ;
+    body.name = req.params.id;
+    body.avatar = req.params.id;
+    body.idUser = req.params.id;
+   
+   var requiredProps = [ 'name','avatar','idUser' ]
+   for(var i in requiredProps){
+        if(typeof body[requiredProps[i]] == 'undefined'){
+            console.log(requiredProps[i]+'empty');
+            return res.send(requiredProps[i]+'empty');
+        }
+    }
+    //ajouter la base de donnee
+    DB.collection('tchat').insertOne(body, function(err, result){
+        //reponse au client
+        if(err) throw err;
+        console.log(result);
+        res.json({
+            result : 'OK',
+            id : result.insertedId.toString()
+        });
+    })
 })
 
 /** /
@@ -27,6 +50,30 @@ router.post('/', function(req, res, next){
 router.get('/settings/:id', function(req, res, next){
     //Afficher les paramètres de la conversation
     res.send('Voici les paramètres de la  conversation');
+
+    var body = req.body ;
+    body.idTchat = req.params.id;
+    body.name = req.params.id;
+    body.avatar = req.params.id;
+    body.idUser = req.params.id;
+   
+   var requiredProps = [ 'idTchat','name','avatar','idUser' ]
+   for(var i in requiredProps){
+        if(typeof body[requiredProps[i]] == 'undefined'){
+            console.log(requiredProps[i]+'empty');
+            return res.send(requiredProps[i]+'empty');
+        }
+    }
+    //ajouter la base de donnee
+    DB.collection('tchat').insertOne(body, function(err, result){
+        //reponse au client
+        if(err) throw err;
+        console.log(result);
+        res.json({
+            result : 'OK',
+            id : result.insertedId.toString()
+        });
+    })
 })
 
 /** /
@@ -38,6 +85,30 @@ router.delete('/:id', function(req, res, next) {
     // L'utiliser pour supprimé en BDD
     // Puis dire à l'utilisateur qu'il a bien supprimé la discution
     res.send('Votre discution à bien été supprimer');
+
+//     var body = req.body ;
+//     body.idTchat = req.params.id;
+//     body.name = req.params.id;
+//     body.avatar = req.params.id;
+//     body.idUser = req.params.id;
+   
+//    var requiredProps = [ 'idTchat','name','avatar','idUser' ]
+//    for(var i in requiredProps){
+//         if(typeof body[requiredProps[i]] == 'undefined'){
+//             console.log(requiredProps[i]+'empty');
+//             return res.send(requiredProps[i]+'empty');
+//         }
+//     }
+//     //ajouter la base de donnee
+//     DB.collection('tchat').insertOne(body, function(err, result){
+//         //reponse au client
+//         if(err) throw err;
+//         console.log(result);
+//         res.json({
+//             result : 'OK',
+//             id : result.insertedId.toString()
+//         });
+//     })
 });
 
 /** 
@@ -48,34 +119,60 @@ router.delete('/:id', function(req, res, next) {
 router.get('/:id', function(req, res, next){
     //Afficher une conversation de la BDD
     res.send('Voici la conversation');
-})
 
-// POUR LA CONNEXION A LA BDD
-var requiredProps = ['tchat'];
-for(var i in requiredProps) {
-    if(typeof req.body[requiredProps[i]] == 'undefined'){
-        console.log(requiredProps[i] + 'empty');
-        return res.send(requiredProps[i] + 'empty');
+    // POUR LA CONNEXION A LA BDD
+    var requiredProps = ['tchat'];
+    for(var i in requiredProps) {
+        if(typeof req.body[requiredProps[i]] == 'undefined'){
+            console.log(requiredProps[i] + 'empty');
+            return res.send(requiredProps[i] + 'empty');
+        }
     }
-}
 
-DB.collection('tchat').insertOne(req.body, function(err, result){
-    if(err) throw err;
-    console.log(result);
-    res.json({
-        result : 'ok',
-        id : result.insertedId.toString()
-    });
+    DB.collection('tchat').insertOne(req.body, function(err, result){
+        if(err) throw err;
+        console.log(result);
+        res.json({
+            result : 'ok',
+            id : result.insertedId.toString()
+        });
+    })
 })
+
+
 
 /** /
 * @author  Rachida
 Ajout d'une discussion
-**/
-router.post('/:id', function(req, res, next) {
-    res.send('Vous avez été ajouter');
-});
+**/ 
 
+router.post('/:id', function(req, res, next) {
+    
+console.log(req.body)
+console.log(req.params.id)
+
+ var body = req.body ;
+ body.idtchat = req.params.id;
+ body.createdDate = new Date();
+
+var requiredProps = [ 'msg','user' ]
+for(var i in requiredProps){
+  if(typeof body[requiredProps[i]] == 'undefined'){
+    console.log(requiredProps[i]+'empty');
+    return res.send(requiredProps[i]+'empty');
+  }
+}
+ //ajouter la base de donnee
+DB.collection('msg').insertOne(body, function(err, result){
+    //reponse au client
+  if(err) throw err;
+  console.log(result);
+  res.json({
+    result : 'OK',
+    id : result.insertedId.toString()
+  });
+  })
+})
 /** /
 * @author  Rachida
 Supprimer un utilisateur d'une discussion
