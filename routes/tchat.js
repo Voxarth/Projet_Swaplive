@@ -37,7 +37,7 @@ router.delete('/:id', function(req, res, next) {
     // Récupérer req.params.id
     // L'utiliser pour supprimé en BDD
     // Puis dire à l'utilisateur qu'il a bien supprimé la discution
-      res.send('Votre discution à bien été supprimer');
+    res.send('Votre discution à bien été supprimer');
 });
 
 /** 
@@ -48,6 +48,24 @@ router.delete('/:id', function(req, res, next) {
 router.get('/:id', function(req, res, next){
     //Afficher une conversation de la BDD
     res.send('Voici la conversation');
+})
+
+// POUR LA CONNEXION A LA BDD
+var requiredProps = ['tchat'];
+for(var i in requiredProps) {
+    if(typeof req.body[requiredProps[i]] == 'undefined'){
+        console.log(requiredProps[i] + 'empty');
+        return res.send(requiredProps[i] + 'empty');
+    }
+}
+
+DB.collection('tchat').insertOne(req.body, function(err, result){
+    if(err) throw err;
+    console.log(result);
+    res.json({
+        result : 'ok',
+        id : result.insertedId.toString()
+    });
 })
 
 /** /
