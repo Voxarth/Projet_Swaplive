@@ -15,7 +15,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'SAWPLIVE' });
 });
 
-/* identification au compte. */
+/**identification au compte
+   **@author romain
+  */
 router.post('/login', function(req, res, next) {
   res.render('login');
   //inserer les données dans la BDD
