@@ -55,7 +55,6 @@ var MongoClient=require('mongodb').MongoClient,
 
   /**
   @author G_G (Jérém)
-
   **/
   // POUR MODIFIER UN UTILISATEUR
   router.put('/:id', function(req, res, next) {
@@ -66,9 +65,7 @@ var MongoClient=require('mongodb').MongoClient,
     });
 
   /**
-
   @author G_G (Jérém)
-
   **/
   // POUR SUPPRIMER UN UTILISATEUR
   router.delete('/:id', function(req, res, next) {
