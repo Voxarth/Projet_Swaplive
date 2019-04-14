@@ -61,6 +61,8 @@ MongoClient.connect(url,
       // Récupérer req.params.id
       // L'utiliser pour modifier en BDD le compte
       // Puis dire à dire à l'utilisateur qu'il à bien modifier son compte
+      
+      
       DB.collection('users').updateOne(req.body, function (err, result) {
         if (err) throw err;
         // console.log(result);
@@ -76,19 +78,19 @@ MongoClient.connect(url,
     @author G_G (Jérém)
     **/
     // POUR SUPPRIMER UN UTILISATEUR
-    router.delete('/id', function (req, res, next) {
+    router.delete('/:id', function (req, res, next) {
       // Récupérer req.params.id
       // L'utiliser pour supprimé en BDD le compte
       // Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
-      DB.collection('users').deleteOne(req.body, function (err, result) {
+      
+      DB.collection('users').deleteOne(req.id, function (err, result) {
         if (err) throw err;
         // console.log(result);
         res.json({
-          result: 'Compte bien supprimer',
-          id: result.insertedId.toString()
+          result: 'Compte bien supprimer'
         });
       });
-
+      // Réponse au client
       res.send('Votre compte à été supprimer');
     });
   });
