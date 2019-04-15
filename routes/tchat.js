@@ -47,10 +47,10 @@ router.post('/', function (req, res, next) {
   })
 })
 
-/** /
- * @author Morgann 
- * 
- **/
+/**
+@author Morgann 
+Afficher les paramètres
+**/
 router.get('/settings/:id', function (req, res, next) {
   //Afficher les paramètres de la conversation
   res.send('Voici les paramètres de la  conversation');
@@ -82,10 +82,10 @@ router.get('/settings/:id', function (req, res, next) {
   })
 })
 
-/** /
- * @author Morgann 
- * 
- **/
+/**
+@author Morgann 
+Supprimer une conversation
+**/
 router.delete('/:idTchat', function (req, res, next) {
   // Récupérer req.params.id
   // L'utiliser pour supprimé en BDD
