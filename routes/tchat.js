@@ -141,10 +141,10 @@ router.post('/:idTchat', function (req, res, next) {
   var newTchat = req.body;
   newTchat.idTchat = idTchat;
   newTchat.createdDate = new Date();
-  if (!newTchat[msg]) {
+  if (!newTchat.msg) {
     return res.send('pas de message');
   }
-  if (!newTchat[user]) {
+  if (!newTchat.user) {
     return res.send('qui envoi le message ?');
   }
 

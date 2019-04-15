@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 /**
  * @author Voxarth
- * ajout de MongoDB
+ * ajout de MongoDB 
  */
 var MongoClient = require('mongodb').MongoClient,
   url = "mongodb://localhost:27017/swaplive";

@@ -20,6 +20,10 @@ MongoClient.connect(url,
       res.render('createCompte', { title: 'SWAP-LIVE' });
     });
 
+    router.get('/tchat', function (req, res, next) {
+      res.render('tchat', { title: 'SWAP-LIVE' });
+    });
+
     /**identification au compte
        **@author romain
       */
