@@ -12,7 +12,7 @@ var MongoClient=require('mongodb').MongoClient,
 
 /* page accueil */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'SAWPLIVE' });
+  res.render('index', { title: 'SWAP-LIVE' });
 });
 
 /**identification au compte

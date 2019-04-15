@@ -1,8 +1,93 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
 }
 
-a {
-  color: #00B7FF;
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 45, 168, 0.705), rgba(0, 45, 168, 0.829)), url('/images/9957f75dea7aca5.jpg');
+  background-position: center;
+  background-size: cover;
+  font-size: 14px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/* =====================
+
+TITRE PRINCIPAL ET SOUS-TITRE
+
+========================*/
+
+header {
+  width: 100vw;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header>h1 {
+  font-family: 'Audiowide', cursive;
+}
+
+header>p {
+  font-family: 'Audiowide', cursive;
+  font-size: 1.2em;
+}
+
+/* =====================
+
+CRéATION D'UN COMPTE
+
+========================*/
+
+legend {
+  font-family: 'Audiowide', cursive;
+  font-size: 1.2em;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+img {
+  padding: 0;
+  margin-bottom: 2%;
+  border-radius: 50px;
+}
+
+fieldset {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#createAccount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 150%;
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 5%;
+}
+
+input[type="submit"] {
+  margin-top: 8%;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+  background-color: rgba(0, 45, 168, 0.527);
+}
+
+input::placeholder {
+  text-align: center;
 }
