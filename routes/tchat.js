@@ -86,7 +86,7 @@ router.get('/settings/:id', function (req, res, next) {
  * @author Morgann 
  * 
  **/
-router.delete('/:id', function (req, res, next) {
+router.delete('/:idTchat', function (req, res, next) {
   // Récupérer req.params.id
   // L'utiliser pour supprimé en BDD
   // Puis dire à l'utilisateur qu'il a bien supprimé la discution
