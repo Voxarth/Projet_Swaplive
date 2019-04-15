@@ -5,7 +5,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(rgba(0, 45, 168, 0.705), rgba(0, 45, 168, 0.829)), url('/images/9957f75dea7aca5.jpg');
+  background-image: linear-gradient(rgba(34, 86, 231, 0.705), rgba(20, 75, 228, 0.829)), url('/images/9957f75dea7aca5.jpg');
   background-position: center;
   background-size: cover;
   font-size: 14px;
