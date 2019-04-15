@@ -10,8 +10,9 @@ MongoClient.connect(url,
     if (err) throw err;
     var DB = client.db('swaplive');
 
-/** /
- * @author Morgann 
+/**
+@author Morgann 
+Création d'une conversation
  **/
 router.post('/', function (req, res, next) {
   //verification des données
