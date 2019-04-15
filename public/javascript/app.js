@@ -35,3 +35,48 @@ $('#createAccount').on('submit', function(evt){
     loadUser(res.id)
   })
 })
+
+function afficheMsg(message) {
+  $('#messages').append('<aside><span class="message">'+
+  message.msg+'</span><span class="user">'+
+  message.user.pseudo+'</span></aside>') ;
+}
+ 
+//////////////////*ajouter un message dans la conversation*///////////////
+// ajout msg/discu POST     /tchat/$idTchat
+$('#newMsg').on('submit', function(evt){
+  evt.stopPropagation();
+  evt.preventDefault();
+  var text = $('#newMsg [name=msg]').val();
+  var user = { };
+  $.ajax({
+    url :'/tchat/'+idtchat,
+    methode : 'POST',
+    data : {msg:text, user:user}
+  }).done(function(res){
+    console.log(res) ;
+   afficheMsg(res)
+    // $('.page').hide() ;
+    // $('#conversations').show() ;
+  })
+})
+///////////////////////*bannir un utilisateur*////////////////////////
+// bann user       DELETE      /tchat/$idTchat/$idUser
+
+$.ajax({
+  url : $(this).attr('action'),
+  method : $(this).attr('method'),
+  data : data
+}).done(function(res){
+  console.log(res) ;
+// recuperer utilisateur
+  loadUser(res.id)
+})
+$.ajax({
+  url :'/tchat/?idUsers='+idUser,
+  methode : 'delete'
+}).done(function(res){
+  console.log(res) ;
+  $('.page').hide() ;
+      $('#conversations').show() ;
+})

@@ -86,7 +86,7 @@ router.get('/settings/:id', function (req, res, next) {
  * @author Morgann 
  * 
  **/
-router.delete('/:id', function (req, res, next) {
+router.delete('/:idTchat', function (req, res, next) {
   // Récupérer req.params.id
   // L'utiliser pour supprimé en BDD
   // Puis dire à l'utilisateur qu'il a bien supprimé la discution
@@ -141,10 +141,10 @@ router.post('/:idTchat', function (req, res, next) {
   var newTchat = req.body;
   newTchat.idTchat = idTchat;
   newTchat.createdDate = new Date();
-  if (!newTchat[msg]) {
+  if (!newTchat.msg) {
     return res.send('pas de message');
   }
-  if (!newTchat[user]) {
+  if (!newTchat.user) {
     return res.send('qui envoi le message ?');
   }
 
