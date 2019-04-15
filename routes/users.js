@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var ObjectId = require('mongodb').ObjectId;
 /**
  * @author Voxarth
  * ajout de MongoDB 
@@ -63,7 +64,7 @@ MongoClient.connect(url,
       // Puis dire à dire à l'utilisateur qu'il à bien modifier son compte
       
       
-      DB.collection('users').updateOne(req.body, function (err, result) {
+      DB.collection('users').updateOne({_id:ObjectId(req.params.id)},{_id:ObjectId(req.params.id)}, function (err, result) {
         if (err) throw err;
         // console.log(result);
         res.json({
@@ -82,17 +83,16 @@ MongoClient.connect(url,
       // Récupérer req.params.id
       // L'utiliser pour supprimé en BDD le compte
       // Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
-        var idUsers = req.params.id;
+        // var idUsers = req.params.id;
 
-      DB.collection('users').deleteOne(idUsers, function (err, result) {
+      DB.collection('users').deleteOne({_id:ObjectId(req.params.id)}, function (err, result) {
         if (err) throw err;
         // console.log(result);
         res.json({
           result: 'Compte bien supprimer'
         });
       });
-      // Réponse au client
-      res.send('Votre compte à été supprimer');
+
     });
   });
 
