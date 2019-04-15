@@ -91,3 +91,22 @@ input[type="submit"]:hover {
 input::placeholder {
   text-align: center;
 }
+
+/* =====================
+
+MISE EN PAGE CGU
+
+========================*/
+
+.cgu{
+  color: orange;
+}
+#size{
+ 
+  width: 100vw;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
