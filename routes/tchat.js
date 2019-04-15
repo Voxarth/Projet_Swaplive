@@ -165,7 +165,7 @@ DELETE /tchat/idDiscussion/idUser
 router.delete('/:idTchat/:iduser', function (req, res, next) {
   //res.send('Vous avez été banni de la discution');
   var idTchat = req.params.idTchat;
-  var idUser = req.params.iduser;
+  var idUser = req.params.idUser;
   DB.collection('tchat').updateOne(
     { _id: ObjectId(idTchat) },
     { $pull: { users: idUser } },
