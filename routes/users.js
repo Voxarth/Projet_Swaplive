@@ -82,8 +82,9 @@ MongoClient.connect(url,
       // Récupérer req.params.id
       // L'utiliser pour supprimé en BDD le compte
       // Puis dire à dire à l'utilisateur qu'il à bien supprimer son compte
-      
-      DB.collection('users').deleteOne(req.id, function (err, result) {
+        var idUsers = req.params.id;
+
+      DB.collection('users').deleteOne(idUsers, function (err, result) {
         if (err) throw err;
         // console.log(result);
         res.json({
