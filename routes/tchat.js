@@ -9,19 +9,19 @@ MongoClient.connect(url,
   function (err, client) {
     if (err) throw err;
     var DB = client.db('swaplive');
-  })
 
 /** /
  * @author Morgann 
  **/
 router.post('/', function (req, res, next) {
   //verification des données
-  if (!req.body.users) {
+  console.log(req.body) ;
+  if (!req.body.idUser) {
     return res.send('list of users ?');
   }
-  // creation de l'objet à enregistrer
+  // creation de l'objet à enregistrer"
   var tchatAcreer = {
-    users: req.body.users
+    idUser: req.body.idUser
   };
   // completer les données
   if (req.body.name) {
@@ -114,21 +114,19 @@ router.delete('/:idTchat', function (req, res, next) {
 **/
 router.get('/:idTchat', function (req, res, next) {
   //Afficher une conversation de la BDD
-  var idTchat = req.params.id;
-  var readTchat = req.body;
-  readTchat.idTchat = idTchat;
-
   // Connexion à la BDD pour aller chercher une conversation
-  DB.collection('msg').findOne(readTchat, function (err, result){
-
+  console.log({_id:ObjectId(req.params.idTchat)})
+  DB.collection('tchat').findOne({_id:new ObjectId(req.params.idTchat)}, function (err, tchat){
     if (err) throw err;
-    res.json({
-      result: 'OK',
-      id: result.insertedId.toString()
-    });
+
+    DB.collection('msg').find({idTchat : req.params.idTchat}).toArray(function (err, result){
+        if (err) throw err;
+        tchat.messages = result ;
+        res.json(tchat);
+      })
   })
   // Réponse pour le client
-  res.send('Voici la conversation');
+  //res.send('Voici la conversation');
 })
 
 
@@ -137,7 +135,7 @@ router.get('/:idTchat', function (req, res, next) {
 Ajout d'une discussion
 **/
 router.post('/:idTchat', function (req, res, next) {
-  var idTchat = req.params.id;
+  var idTchat = req.params.idTchat;
   var newTchat = req.body;
   newTchat.idTchat = idTchat;
   newTchat.createdDate = new Date();
@@ -179,5 +177,7 @@ router.delete('/:idTchat/:iduser', function (req, res, next) {
       });
     })
 })
+})
+
 
 module.exports = router;
