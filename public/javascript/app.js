@@ -80,3 +80,24 @@ $.ajax({
   $('.page').hide() ;
       $('#conversations').show() ;
 })
+
+///////////////////////*REQUETE AJAX POUR LIER LE BOUTON CONNEXTION A LA SESSION*////////essai 1 ////////////////
+/**@author romain */
+
+function loadUser(idUser){
+  // charger les données utilisateur
+  $.ajax({
+    url : '/users/'+idUser,
+    method : 'GET'
+  }).done(function(res){
+    // charger la liste des conversations
+    $.ajax({
+      url : '/tchat/?idUser='+idUser,
+      method : 'GET'
+    }).done(function(res){
+      // afficher la liste des conversations
+      $('.page').hide() ;
+      $('#loging').show() ;
+    })
+  })
+}
