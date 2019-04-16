@@ -35,7 +35,9 @@ $('#createAccount').on('submit', function(evt){
     loadUser(res.id)
   })
 })
-
+/*
+fonction permettent d afficher les messages dans une file de discussion
+*/
 function afficheMsg(message) {
   $('#messages').append('<aside><span class="message">'+
   message.msg+'</span><span class="user">'+
