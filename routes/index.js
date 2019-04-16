@@ -25,15 +25,11 @@ MongoClient.connect(url,
       res.render('createCompte', { title: 'SWAP-LIVE' });
     });
     
-    // Page de tchat
-    router.get('/tchat', function (req, res, next) {
-      res.render('tchat', { title: 'SWAP-LIVE' });
-    });
-
+    
     /*****se loguer au compte (je l'ai  fait à ma sauce)
        **@author romain */
 
-    router.post('/', function (req, res, next) {
+    router.post('/login', function (req, res, next) {
      //vérifier les données reçu en POST.
     var requiredProps = ['password', 'email'];
     for (var i in requiredProps) {
@@ -48,18 +44,22 @@ MongoClient.connect(url,
         console.log(result);
         //réponse au client avec $id du compte.
         if (result == '' || result ==null){
-          res.send('Email non valide');
+          return res.send('Email non valide');
         }
         if (result.password != req.body.password || req.body.password == null){
+          return res.send('Password error') ;
         }
         else{
+          
+          res.cookie('token', result._id.toString()) ;
+          connectedUsers.set(result._id.toString(), result) ;
           res.json({
             result : 'connexion réussis YALLLLA',
-            id : result._id,
-            name : result.name,
-            lastName : result.lastName,
-            email : result.email,
-            password : result.password
+            // id : result._id,
+            // name : result.name,
+            // lastName : result.lastName,
+            // email : result.email,
+            // password : result.password
           });
         }
         });
@@ -70,5 +70,8 @@ MongoClient.connect(url,
       res.render('cgu', { title: 'SWAPLIVE' });
     });
   });
-
-module.exports = router;
+var connectedUsers = {} ;
+module.exports = function(users) {
+  connectedUsers = users ;
+  return router;
+}

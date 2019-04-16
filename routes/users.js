@@ -96,5 +96,8 @@ MongoClient.connect(url,
     
   });
 
-
-module.exports = router;
+var connectedUsers = {} ;
+module.exports = function(users) {
+  connectedUsers = users ;
+  return router;
+}
