@@ -19,6 +19,7 @@ MongoClient.connect(url,
     router.get('/createCompte', function (req, res, next) {
       res.render('createCompte', { title: 'SWAP-LIVE' });
     });
+    //ligne de com pour rien
 
     router.get('/tchat', function (req, res, next) {
       res.render('tchat', { title: 'SWAP-LIVE' });
