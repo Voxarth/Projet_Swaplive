@@ -84,26 +84,21 @@ router.get('/settings/:id', function (req, res, next) {
 })
 
 /**
-@author Morgann 
+@author Morgann
 Supprimer une conversation
 **/
 router.delete('/:idTchat', function (req, res, next) {
-  // Récupérer req.params.id
-  // L'utiliser pour supprimé en BDD
-  // Puis dire à l'utilisateur qu'il a bien supprimé la discution
-  res.send('Votre discution à bien été supprimer');
+    // Récupérer req.params.id
+    // L'utiliser pour supprimé en BDD
+    // Puis dire à l'utilisateur qu'il a bien supprimé la discution
+    // Verification des données
 
-  var idTchat = req.params.idTchat;
-  DB.collection('tchat').updateOne(
-    { _id: ObjectId(idTchat) },
-    { $pull: { tchat: idTchat } },
-    function (err, result) {
-      //reponse au client
-      if (err) throw err;
-      res.json({
-        result: 'OK',
-        msg: 'discution supprimer'
-      });
+    DB.collection('tchat').deleteOne({ _id: ObjectId(req.params.idTchat) },function (err, result) {
+        //reponse au client
+        if (err) throw err;
+        res.json({
+            result: 'discution supprimer', 
+        })
     })
 })
 
