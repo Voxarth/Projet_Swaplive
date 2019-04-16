@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <h1>Discussions</h1>
+    <ul id="conversations">
+        {% for tchat in conversations %}
+            <li>
+                <a href="/tchat/{{ tchat._id }}">
+                    <span class="avatar"><img src="{{ tchat.avatar }}" /></span>
+                    <span class="name">{{ tchat.name }}</span>
+                    {#<span class="lastTime">{{ tchat.lastTime }}</span>#}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
