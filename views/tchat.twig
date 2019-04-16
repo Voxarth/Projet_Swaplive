@@ -1,14 +1,19 @@
 {% extends 'layout.twig' %}
 
-{% block body %}ss
+{% block body %}
 <h1>Discussion</h1>
 <section id="messages"></section> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 <form id="newMsg">
-    <i class="far fa-file"></i>
-    <i class="fas fa-camera"></i>
+    {# <i class="far fa-file"></i>
+    <i class="fas fa-camera"></i> #}
     <textarea  row="900" cols="50" name="msg"></textarea>
-    <input type="submit" value="Envoyer">
+    
+    <br>
+    <br>
+
+
+    <input class="message_submit" type="submit" value="Envoyer">
 </form>
 {% endblock %}

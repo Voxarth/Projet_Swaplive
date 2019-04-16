@@ -1,0 +1,31 @@
+h1 {
+    margin: 0;
+    width: 100vw;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+}
+
+#newMsg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    resize: none;
+    border-radius: 10px;
+    /* margin-left: 5%;  */
+}
+
+.message_submit{
+    margin-top: 8%;
+    width: 25%;
+    height: 50px;
+    border-radius: 5px;
+}
