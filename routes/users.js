@@ -92,8 +92,8 @@ MongoClient.connect(url,
           result: 'Compte bien supprimer'
         });
       });
-
     });
+    
   });
 
 

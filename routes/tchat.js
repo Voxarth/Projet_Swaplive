@@ -64,28 +64,19 @@ router.get('/settings/:id', function (req, res, next) {
     idUser: req.params.idUser
   };
   // completer les données
-  if (req.body.name) {
-    tchatParams.name = req.body.name;
-  } else {
-    tchatParams.name = "new tchat";
-  }
-  if (req.body.avatar) {
-    tchatParams.avatar = req.body.avatar;
-  } else {
-    tchatParams.avatar = "avatar.jpeg";
-  }
+//   Modifier la taille des messages
+  if (req.body.size) {
+    tchatParams.size = req.body.size;
+  }/* else {
+    tchatParams.size = "Size (12 à 20)";
+  }*/
+//   Modifier le themes
+  if (req.body.themes) {
+    tchatParams.themes = req.body.themes;
+  }/* else {
+    tchatParams.themes = "dark / light";
+  }*/
   
-  
-  if (req.body.name) {
-    tchatParams.name = req.body.name;
-  } else {
-    tchatParams.name = "new tchat";
-  }
-  if (req.body.avatar) {
-    tchatParams.avatar = req.body.avatar;
-  } else {
-    tchatParams.avatar = "avatar.jpeg";
-  }
   //ajouter la base de donnee
   DB.collection('tchat').findOne(tchat, function (err, result) {
     // 'idTchat' = 'idTchat';
