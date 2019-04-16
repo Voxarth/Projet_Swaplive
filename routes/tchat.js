@@ -54,11 +54,28 @@ Afficher les paramètres
 **/
 router.get('/settings/:id', function (req, res, next) {
   //Afficher les paramètres de la conversation
-  res.send('Voici les paramètres de la  conversation');
+  console.log(req.body) ;
+  if (!req.body.idUser) {
+    return res.send('list of users ?');
+  }
+  // creation de l'objet à enregistrer"
   var tchatParams = {
     idTchat: req.params.idTchat,
-    idUser: req.params.idUser,
+    idUser: req.params.idUser
   };
+  // completer les données
+  if (req.body.name) {
+    tchatParams.name = req.body.name;
+  } else {
+    tchatParams.name = "new tchat";
+  }
+  if (req.body.avatar) {
+    tchatParams.avatar = req.body.avatar;
+  } else {
+    tchatParams.avatar = "avatar.jpeg";
+  }
+  
+  
   if (req.body.name) {
     tchatParams.name = req.body.name;
   } else {
@@ -92,7 +109,6 @@ router.delete('/:idTchat', function (req, res, next) {
     // L'utiliser pour supprimé en BDD
     // Puis dire à l'utilisateur qu'il a bien supprimé la discution
     // Verification des données
-
     DB.collection('tchat').deleteOne({ _id: ObjectId(req.params.idTchat) },function (err, result) {
         //reponse au client
         if (err) throw err;
