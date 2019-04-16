@@ -1,0 +1,32 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+<header>
+  <h1>{{title}}</h1>
+</header>
+
+<div id="compte">
+
+  <fieldset id="login" class="page">
+    <legend>Connexion</legend>
+    <form id="createAccount" method="post" action="/users/">
+
+      <img src="/images/icone_swap.png" alt="logo swap-live">
+
+      <!-- <label for="email">Email:</label> -->
+      <input class="input" type="email" name="email" value="" placeholder="email@mail.fr" required>
+
+      <!-- <label for="password">Password:</label> -->
+      <input class="input" type="password" name="password" value="" placeholder="azerty123" required>
+
+      <input type="submit" value="Valider">
+    </form>
+  </fieldset>
+</div>
+
+<div id="conversations" class="page"></div>
+
+<script src="/javascript/app.js"></script>
+
+{% endblock %}

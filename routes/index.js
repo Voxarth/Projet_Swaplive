@@ -15,15 +15,21 @@ MongoClient.connect(url,
       res.render('index', { title: 'SWAP-LIVE' });
     });
 
+    /* Page de connexion */
+    router.get('/connexion', function (req, res, next) {
+      res.render('connexion', { title: 'SWAP-LIVE' });
+    });
+
     // Page de création de compte
     router.get('/createCompte', function (req, res, next) {
       res.render('createCompte', { title: 'SWAP-LIVE' });
     });
-    //ligne de com pour rien
-
+    
+    // Page de tchat
     router.get('/tchat', function (req, res, next) {
       res.render('tchat', { title: 'SWAP-LIVE' });
     });
+
 
     /**identification au compte
        **@author romain
