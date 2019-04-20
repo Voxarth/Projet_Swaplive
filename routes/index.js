@@ -30,10 +30,16 @@ MongoClient.connect(url,
       res.render('tchat', { title: 'SWAP-LIVE' });
     });
 
-    // Page de création de compte
+    // Page des conversations
     router.get('/conversations', function (req, res, next) {
       res.render('conversations', { title: 'SWAP-LIVE' });
     });
+
+    // Page des messages d'une conversation
+    router.get('/conversation', function (req, res, next) {
+      res.render('conversation', { title: 'SWAP-LIVE' });
+    });
+
 
 
     /*****se loguer au compte (je l'ai  fait à ma sauce)

@@ -2,23 +2,24 @@
 
 {% block body %}
 
-<header>
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
-</header>
+    <header>
+        <h1>{{title}}</h1>
+        <p>Welcome to
+            {{title}}</p>
+    </header>
 
-<div id="compte">
+    <div id="compte">
 
-  <fieldset id="login" class="page">
-    <legend>Connectez-vous</legend>
-    <img src="/images/icone_swap.png" alt="logo swap-live">
-    <a href="/connexion"><input type="submit" value="Connexion"></a>
-    <a href="/createCompte"><input type="submit" value="Créer un compte"></a>
-  </fieldset>
-</div>
+        <fieldset class="page" id="login">
+            <legend>Connectez-vous</legend>
+            <img alt="logo swap-live" src="/images/icone_swap.png">
+            <a href="/connexion"><input type="submit" value="Connexion"></a>
+            <a href="/createCompte"><input type="submit" value="Créer un compte"></a>
+        </fieldset>
+    </div>
 
-<div id="conversations" class="page"></div>
+    <div class="page" id="conversations"></div>
 
-<script src="/javascript/app.js"></script>
+    <script src="/javascript/app.js"></script>
 
 {% endblock %}

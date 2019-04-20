@@ -2,38 +2,43 @@
 
 {% block body %}
 
-<header>
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
-</header>
+    <header>
+        <h1>{{title}}</h1>
+        <p>Welcome to
+            {{title}}</p>
+    </header>
 
-<div id="compte">
+    <div id="compte">
 
-  <fieldset id="login" class="page">
-    <legend>Création du compte utilisateur</legend>
-    <form id="createAccount" method="post" action="/users/">
+        <fieldset class="page" id="login">
+            <legend>Création du compte utilisateur</legend>
+            <form action="/users/" id="createAccount" method="post">
 
-      <img src="/images/icone_swap.png" alt="logo swap-live">
+                <img
+                alt="logo swap-live" src="/images/icone_swap.png">
 
-      <!-- <label for="lastName">Nom:</label> -->
-      <input class="input" type="text" name="lastName" value="" placeholder="Votre nom" required>
+                <!-- <label for="lastName">Nom:</label> -->
+                <input
+                class="input" name="lastName" placeholder="Votre nom" required type="text" value="">
 
-      <!-- <label for="name">Prénom:</label> -->
-      <input class="input" type="text" name="name" value="" placeholder="Votre prénom" required>
+                <!-- <label for="name">Prénom:</label> -->
+                <input
+                class="input" name="name" placeholder="Votre prénom" required type="text" value="">
 
-      <!-- <label for="email">Email:</label> -->
-      <input class="input" type="email" name="email" value="" placeholder="email@mail.fr" required>
+                <!-- <label for="email">Email:</label> -->
+                <input
+                class="input" name="email" placeholder="email@mail.fr" required type="email" value="">
 
-      <!-- <label for="password">Password:</label> -->
-      <input class="input" type="password" name="password" value="" placeholder="azerty123" required>
+                <!-- <label for="password">Password:</label> -->
+                <input class="input" name="password" placeholder="azerty123" required type="password" value="">
 
-      <a href="/conversations.twig"><input type="submit" value="Valider"></a>
-    </form>
-  </fieldset>
-</div>
+                <a href="/"><input type="submit" value="Valider"></a>
+            </form>
+        </fieldset>
+    </div>
 
-<div id="conversations" class="page"></div>
+    <div class="page" id="conversations"></div>
 
-<script src="/javascript/app.js"></script>
+    <script src="/javascript/app.js"></script>
 
 {% endblock %}
