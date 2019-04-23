@@ -6,8 +6,8 @@
         {% for tchat in conversations %}
             <li>
                 <a href="/tchat/{{ tchat._id }}">
-                    <span class="avatar"><img src="{{ tchat.avatar }}"/></span>
-                    <span class="name">{{ tchat.name }}</span>
+                    <p><span class="avatar"><img src="{{ tchat.avatar }}"/></span></p>
+                    <p><span class="name">{{ tchat.name }}</span></p>
                 </a>
             </li>
         {% endfor %}

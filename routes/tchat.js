@@ -144,7 +144,7 @@ Création d'une conversation
         DB.collection('msg').find({ idTchat: req.params.idTchat }).toArray(function (err, result) {
           if (err) throw err;
           tchat.messages = result;
-          res.json(tchat);
+          res.render('conversation', { title: 'SWAP-LIVE', tchat: tchat });
         })
       })
       // Réponse pour le client

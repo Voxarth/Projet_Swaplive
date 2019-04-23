@@ -3,13 +3,12 @@
 {% block body %}
     <h1>Discussions</h1>
     <ul id="conversations">
-        {% for tchat in conversations %}
+        {% for msg in tchat.messages %}
             <li>
-                <a href="/tchat/{{ tchat._id }}">
-                    <span class="avatar"><img src="{{ tchat.avatar }}"/></span>
-                    <span class="name">{{ tchat.name }}</span>
-                    {#<span class="lastTime">{{ tchat.lastTime }}</span>#}
-                </a>
+                <span>{{ msg.createdDate }}</span>
+                <span>{{ msg.pseudo }}</span>
+                <span class="avatar"><img src="{{ msg.avatar }}"/></span>
+                <span>{{ msg.msg }}</span>
             </li>
         {% endfor %}
     </ul>
