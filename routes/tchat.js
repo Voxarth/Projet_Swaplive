@@ -32,6 +32,7 @@ Création d'une conversation
 
       var userId = connectedUsers.get(req.cookies.token)._id.toString();
 
+      
       if (!req.body.users) {
         return res.send('list of users ?');
       }
@@ -144,7 +145,7 @@ Création d'une conversation
         DB.collection('msg').find({ idTchat: req.params.idTchat }).toArray(function (err, result) {
           if (err) throw err;
           tchat.messages = result;
-          res.render('conversation', { title: 'SWAP-LIVE', tchat: tchat });
+         res.render('conversation', { title: 'SWAP-LIVE', tchat: tchat });
         })
       })
       // Réponse pour le client
@@ -175,7 +176,8 @@ Création d'une conversation
         res.json({
           result: 'OK',
           id: result.insertedId.toString()
-        });
+           });
+        res.render('conversation', { title: 'SWAP-LIVE', msg: msg })
       })
     })
     /** /

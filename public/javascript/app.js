@@ -31,8 +31,16 @@ $('#createAccount').on('submit', function (evt) {
     data: data
   }).done(function (res) {
     console.log(res);
+    if(res.state=="ok"){
+      document.location.href="/tchat/";
+    }
+    else {
+      alert("veuillez vérifier vos identifiants");
+    }
+    //lien vers tchat
+
     // recuperation cpt utilisateur
-    loadUser(res.id)
+    
   })
 })
 

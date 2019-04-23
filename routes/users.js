@@ -47,7 +47,7 @@ MongoClient.connect(url,
         if (err) throw err;
         console.log(result);
         res.json({
-          result: 'ok',
+          state: 'ok',
           id: result.insertedId.toString()
         });
       });

@@ -61,6 +61,7 @@ MongoClient.connect(url,
           res.cookie('token', result._id.toString());
           connectedUsers.set(result._id.toString(), result);
           res.json({
+            state:"ok",
             result: 'connexion réussis YALLLLA',
             // id : result._id,
             // name : result.name,
