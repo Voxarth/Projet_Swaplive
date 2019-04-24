@@ -10,7 +10,7 @@ MongoClient.connect(url,
     if (err) throw err;
     var DB = client.db('swaplive');
 
-    // Page liste des conversations
+    // Afficher la liste de toutes les conversations
     router.get('/', function (req, res, next) {
       var idUser = req.cookies.token;
       var user = connectedUsers.get(idUser);
@@ -18,7 +18,11 @@ MongoClient.connect(url,
       console.log(user);
 
       DB.collection('tchat').find({ users: user._id.toString() }).toArray(function (err, conversations) {
-        res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations });
+        DB.collection('users').find({ }).toArray(function (err, users) {
+          if(err) throw err ;
+          console.log(users)
+          res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations, users:users});
+        })
       })
     });
 
@@ -66,44 +70,6 @@ router.post('/', function (req, res, next) {
     });
   })
 })
-
-      var userId = connectedUsers.get(req.cookies.token)._id.toString();
-
-      if (!req.body.users) {
-        return res.send('list of users ?');
-      }
-      // creation de l'objet à enregistrer"
-      var tchatAcreer = {
-        users: req.body.users
-      };
-      //on ajoute l'utilisateur loggé si il n'est pas present dans la liste des utilisateurs
-      if (tchatAcreer.users.indexOf(userId) === -1)
-        tchatAcreer.users.push(userId);
-
-      // completer les données
-      if (req.body.name) {
-        tchatAcreer.name = req.body.name;
-      } else {
-        tchatAcreer.name = "new tchat";
-      }
-      if (req.body.avatar) {
-        tchatAcreer.avatar = req.body.avatar;
-      } else {
-        tchatAcreer.avatar = "avatar.jpeg";
-      }
-      //ajouter la base de donnee
-      DB.collection('tchat').insertOne(tchatAcreer, function (err, result) {
-        //reponse au client
-        if (err) throw err;
-        //console.log(result);
-        // repondre au client avec idTchat
-        res.json({
-          result: 'OK',
-          id: result.insertedId.toString()
-        });
-      })
-    })
-
     /**
     @author Morgann 
     Afficher les paramètres

@@ -15,6 +15,17 @@ MongoClient.connect(url,
     var DB = client.db('swaplive');
     console.log('Je suis connecté.');
 
+    // Afficher la liste de tout(e)s les utilisateurs
+    router.get('/', function (req, res, next) {
+      var idUser = req.cookies.token;
+      var user = connectedUsers.get(idUser);
+
+      console.log(user);
+
+      DB.collection('users').find({ users: user._id.toString() }).toArray(function (err, conversations) {
+        res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations});
+      })
+    });
 
     /* GET users listing. */
     router.get('/', function (req, res, next) {

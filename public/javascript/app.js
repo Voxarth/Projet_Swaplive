@@ -96,7 +96,7 @@ $.ajax({
 ///////////////////////*REQUETE AJAX POUR LIER LE BOUTON CONNEXTION A LA SESSION*////////essai 1 ////////////////
 /**@author romain */
 
-function loadUser(idUser) {
+/*function loadUser(idUser) {
   // charger les données utilisateur
   $.ajax({
     url: '/users/' + idUser,
@@ -112,4 +112,4 @@ function loadUser(idUser) {
       $('#loging').show();
     })
   })
-}
+}*/

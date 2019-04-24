@@ -1,15 +1,28 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-    <h1>Discussions</h1>
+    <h1>Discussion</h1>
+    <ul id="users">
+        
+        {% for user in users %}
+            <li class="usersAff">
+                <a href="/users/{{ user._id }}">
+                    <p><span class="lastName">{{user.lastName}}</span></p>
+                    <p><span class="name">{{user.name}}</span></p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+            <p id="line">_______________________________________________________________________________<p>
     <ul id="conversations">
         {% for tchat in conversations %}
-            <li>
+            <li class="tchatsAff">
                 <a href="/tchat/{{ tchat._id }}">
                     <p><span class="avatar"><img src="{{ tchat.avatar }}"/></span></p>
                     <p><span class="name">{{ tchat.name }}</span></p>
                 </a>
             </li>
+
         {% endfor %}
     </ul>
 {% endblock %}
