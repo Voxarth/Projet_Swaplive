@@ -69,7 +69,6 @@ router.post('/', function (req, res, next) {
 
       var userId = connectedUsers.get(req.cookies.token)._id.toString();
 
-      
       if (!req.body.users) {
         return res.send('list of users ?');
       }
@@ -125,15 +124,14 @@ router.post('/', function (req, res, next) {
       if (req.body.size) {
         tchatParams.size = req.body.size;
       }/* else {
-    tchatParams.size = "Size (12 à 20)";
+    tchatParams.size = "Size (12, 16 ou 20)";
   }*/
-      //   Modifier le themes
-      if (req.body.themes) {
-        tchatParams.themes = req.body.themes;
-      }/* else {
-    tchatParams.themes = "dark / light";
-  }*/
-
+      // Modifier le themes
+     if (req.body.themes) {
+       tchatParams.themes = req.body.themes;
+     }else {
+  /*tchatParams.themes = "dark / light";*/
+  }
       //ajouter la base de donnee
       DB.collection('tchat').findOne(tchat, function (err, result) {
         // 'idTchat' = 'idTchat';
@@ -182,7 +180,7 @@ router.post('/', function (req, res, next) {
         DB.collection('msg').find({ idTchat: req.params.idTchat }).toArray(function (err, result) {
           if (err) throw err;
           tchat.messages = result;
-         res.render('conversation', { title: 'SWAP-LIVE', tchat: tchat });
+          res.json(tchat);
         })
       })
       // Réponse pour le client
@@ -213,8 +211,7 @@ router.post('/', function (req, res, next) {
         res.json({
           result: 'OK',
           id: result.insertedId.toString()
-           });
-        res.render('conversation', { title: 'SWAP-LIVE', msg: msg })
+        });
       })
     })
     /** /
