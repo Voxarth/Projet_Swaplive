@@ -26,9 +26,46 @@ MongoClient.connect(url,
 @author Morgann 
 Création d'une conversation
  **/
-    router.post('/', function (req, res, next) {
-      //verification des données
-      console.log(req.body);
+router.post('/', function (req, res, next) {
+  //verification des données
+  console.log(req.body) ;
+  
+  var idUser = connectedUsers.get(req.cookies.token)._id.toString() ;
+  
+  if (!req.body.users) {
+    return res.send('list of users ?');
+  }
+  // creation de l'objet à enregistrer"
+  var tchatAcreer = {
+    users: req.body.users
+  };
+  //on ajoute l'utilisateur loggé si il n'est pas present dans la liste des utilisateurs
+  if(tchatAcreer.users.indexOf(idUser) === -1)
+    tchatAcreer.users.push(idUser) ;
+  
+  // completer les données
+  if (req.body.name) {
+    tchatAcreer.name = req.body.name;
+  } else {
+    tchatAcreer.name = "new tchat";
+  }
+  if (req.body.avatar) {
+    tchatAcreer.avatar = req.body.avatar;
+  } else {
+    tchatAcreer.avatar = "avatar.jpeg";
+  }
+  //ajouter la base de donnee
+  DB.collection('tchat').insertOne(tchatAcreer, function (err, result) {
+    //reponse au client
+    if (err) throw err;
+    //console.log(result);
+    // repondre au client avec idTchat
+    res.json({
+      result: 'OK',
+      id: result.insertedId.toString()
+    });
+  })
+})
 
       var userId = connectedUsers.get(req.cookies.token)._id.toString();
 
@@ -201,7 +238,6 @@ Création d'une conversation
           });
         })
     })
-  })
 
 var connectedUsers = {};
 module.exports = function (users) {
