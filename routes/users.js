@@ -23,13 +23,17 @@ MongoClient.connect(url,
       console.log(user);
 
       DB.collection('users').find({ users: user._id.toString() }).toArray(function (err, conversations) {
-        res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations});
+        res.json({ 
+           title: 'SWAP-LIVE', 
+           conversations: 'conversations'});
       })
     });
 
     /* GET users listing. */
     router.get('/', function (req, res, next) {
-      res.send('respond with a resource');
+      res.json({
+        result:'respond with a resource'
+      });
     });
 
 
@@ -83,7 +87,9 @@ MongoClient.connect(url,
           id: result.insertedId.toString()
         });
       });
-      res.send('Votre compte à été modifier');
+      res.json({
+        result:'Votre compte à été modifier'
+      });
     });
 
     /**

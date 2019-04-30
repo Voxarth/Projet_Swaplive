@@ -12,23 +12,31 @@ MongoClient.connect(url,
 
     /**** Page accueil *****/
     router.get('/', function (req, res, next) {
-      res.render('index', { title: 'SWAP-LIVE' });
+      res.json({ 
+        title: 'SWAP-LIVE' 
+      });
     });
 
     /* Page de connexion */
     router.get('/connexion', function (req, res, next) {
-      res.render('connexion', { title: 'SWAP-LIVE' });
+      res.json({
+        title: 'SWAP-LIVE'
+     });
     });
 
     // Page de création de compte
     router.get('/createCompte', function (req, res, next) {
-      res.render('createCompte', { title: 'SWAP-LIVE' });
+      res.json({
+        title: 'SWAP-LIVE' 
+      });
     });
 
     
     // Page des messages d'une conversation
     router.get('/conversation', function (req, res, next) {
-      res.render('conversation', { title: 'SWAP-LIVE' });
+      res.json({ 
+        title: 'SWAP-LIVE' 
+      });
     });
 
 
@@ -51,7 +59,8 @@ MongoClient.connect(url,
         console.log(result);
         //réponse au client avec $id du compte.
         if (result == '' || result == null) {
-          return res.send('Email non valide');
+          return res.json({
+            result:'Email non valide'});
         }
         if (result.password != req.body.password || req.body.password == null) {
           return res.send('Password error');
@@ -75,7 +84,9 @@ MongoClient.connect(url,
 
     /* GET  CGU. */
     router.get('/cgu', function (req, res, next) {
-      res.render('cgu', { title: 'SWAPLIVE' });
+      res.json({
+         title: 'SWAPLIVE'
+         });
     });
   });
 var connectedUsers = {};
