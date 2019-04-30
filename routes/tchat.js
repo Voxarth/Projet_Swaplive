@@ -8,7 +8,7 @@ MongoClient.connect(url,
   { useNewUrlParser: true },
   function (err, client) {
     if (err) throw err;
-    var DB = client.db('swaplive');
+      var DB = client.db('swaplive');
 
     // Afficher la liste de toutes les conversations
     router.get('/', function (req, res, next) {
@@ -25,7 +25,7 @@ MongoClient.connect(url,
             conversations: conversations,
             users:users
           })
-//          res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations, users:users});
+         res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations, users:users});
         })
       })
     });
@@ -190,6 +190,7 @@ Création d'une conversation
         });
       })
     })
+
     /** /
     * @author  Rachida
     Supprimer un utilisateur d'une discussion
@@ -208,12 +209,13 @@ Création d'une conversation
           res.json({
             result: 'OK',
             msg: 'utilisateur banni'
-          });
+          })
         })
     })
+  })
 
 var connectedUsers = {};
 module.exports = function (users) {
   connectedUsers = users;
   return router;
-}
+};
