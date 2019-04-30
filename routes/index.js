@@ -12,31 +12,25 @@ MongoClient.connect(url,
 
     /**** Page accueil *****/
     router.get('/', function (req, res, next) {
-      res.json({ 
-        title: 'SWAP-LIVE' 
-      });
+      res.render('index', {
+        title : 'SwapLive'
+      })
     });
 
     /* Page de connexion */
     router.get('/connexion', function (req, res, next) {
-      res.json({
-        title: 'SWAP-LIVE'
-     });
+      res.render('connexion')
     });
 
     // Page de création de compte
     router.get('/createCompte', function (req, res, next) {
-      res.json({
-        title: 'SWAP-LIVE' 
-      });
+      res.render('createCompte')
     });
 
     
     // Page des messages d'une conversation
     router.get('/conversation', function (req, res, next) {
-      res.json({ 
-        title: 'SWAP-LIVE' 
-      });
+      res.render('conversation')
     });
 
 

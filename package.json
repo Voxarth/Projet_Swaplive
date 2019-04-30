@@ -12,6 +12,7 @@
     "http-errors": "~1.6.2",
     "mongodb": "^3.2.3",
     "morgan": "~1.9.0",
+    "nodemon": "^1.18.11",
     "twig": "~0.10.3"
   },
   "devDependencies": {
