@@ -21,7 +21,11 @@ MongoClient.connect(url,
         DB.collection('users').find({ }).toArray(function (err, users) {
           if(err) throw err ;
           console.log(users)
-          res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations, users:users});
+          res.json({
+            conversations: conversations,
+            users:users
+          })
+//          res.render('conversations', { title: 'SWAP-LIVE', conversations: conversations, users:users});
         })
       })
     });
