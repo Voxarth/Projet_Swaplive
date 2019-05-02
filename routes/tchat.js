@@ -21,7 +21,7 @@ MongoClient.connect(url,
         DB.collection('users').find({ }).toArray(function (err, users) {
           if(err) throw err ;
           console.log(users)
-          res.json({
+         res.json({
             conversations: conversations,
             users:users
           })

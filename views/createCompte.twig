@@ -31,8 +31,17 @@
 
                 <!-- <label for="password">Password:</label> -->
                 <input class="input" name="password" placeholder="azerty123" required type="password" value="">
-
-                <a href="/"><input type="submit" value="Valider"></a>
+                <!--choix de lavatar-->
+                <p>Veuillez choisir votre avatar</p>
+                <div class="avatars">
+                    {% for i in range(3, 17) %}
+                    <label class="radioButton">
+                        <input type="radio" name="avatar" valeur="myAvatar_{{i}}.png">
+                        <img src="/image/myAvatar_{{i}}.png"/>
+                    </label>    
+                    {% endfor %}
+                </div>
+                <input type="submit" value="Valider">
             </form>
         </fieldset>
     </div>

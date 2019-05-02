@@ -33,6 +33,7 @@ MongoClient.connect(url,
       res.render('conversation')
     });
 
+    router.get('/conversation',)
 
 
     /*****se loguer au compte (je l'ai  fait à ma sauce)
