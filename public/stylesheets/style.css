@@ -4,7 +4,7 @@
 
 body {
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   background-image: linear-gradient(rgba(34, 86, 231, 0.705), rgba(20, 75, 228, 0.829)), url('/images/9957f75dea7aca5.jpg');
   background-position: center;
   background-size: cover;
@@ -71,7 +71,7 @@ fieldset {
 }
 
 .input {
-  width: 150%;
+  width: 50%;
   height: 50px;
   border-radius: 5px;
   margin-top: 5%;
@@ -79,7 +79,7 @@ fieldset {
 
 input[type="submit"] {
   margin-top: 8%;
-  width: 100%;
+  width: 30%;
   height: 50px;
   border-radius: 5px;
 }
