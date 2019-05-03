@@ -15,11 +15,20 @@ MongoClient.connect(url,
     var DB = client.db('swaplive');
     console.log('Je suis connecté.');
 
-
     /* GET users listing. */
     router.get('/', function (req, res, next) {
       res.send('respond with a resource');
     });
+
+    
+    /* GET recuperer les details de l'utilisateur . */
+    router.get('/:id', function (req, res, next) {
+      DB.collection('users').findOne({_id:ObjectId(req.params.id)}, function(err, user){
+        if (err) throw err;
+        res.json(user) ;
+      })
+    });
+
 
 
     /**Création d'un nouveau compte

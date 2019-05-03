@@ -55,7 +55,7 @@ MongoClient.connect(url,
           connectedUsers.set(result._id.toString(), result) ;
           res.json({
             result : 'connexion réussis YALLLLA',
-            // id : result._id,
+            id : result._id.toString(),
             // name : result.name,
             // lastName : result.lastName,
             // email : result.email,
